@@ -1,4 +1,3 @@
-// C:\Users\vivek_laxvnt1\Desktop\nest-js-link-shrink\src\auth\schema\user.schema.ts
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 

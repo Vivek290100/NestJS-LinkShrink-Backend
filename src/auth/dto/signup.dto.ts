@@ -1,4 +1,3 @@
-// C:\Users\vivek_laxvnt1\Desktop\nest-js-link-shrink\src\auth\dto\signup.dto.ts
 import { IsEmail, IsNotEmpty, IsString, MinLength, MaxLength } from 'class-validator';
 
 export class SignUpDto {

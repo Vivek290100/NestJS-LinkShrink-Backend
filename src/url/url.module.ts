@@ -1,4 +1,3 @@
-// C:\Users\vivek_laxvnt1\Desktop\nest-js-link-shrink\src\url\url.module.ts
 import { Module } from '@nestjs/common';
 import { UrlController } from './url.controller';
 import { UrlService } from './url.service';

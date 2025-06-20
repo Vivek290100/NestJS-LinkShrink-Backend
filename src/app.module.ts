@@ -1,4 +1,3 @@
-// C:\Users\vivek_laxvnt1\Desktop\nest-js-link-shrink\src\app.module.ts
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';

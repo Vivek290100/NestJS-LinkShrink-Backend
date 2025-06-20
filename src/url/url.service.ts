@@ -1,11 +1,9 @@
-// C:\Users\vivek_laxvnt1\Desktop\nest-js-link-shrink\src\url\url.service.ts
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Url } from './schema/url.schema';
 import { Model } from 'mongoose';
 import { randomBytes } from 'crypto';
 import { CreateUrlDto } from './dto/create-url.dto';
-import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class UrlService {
@@ -36,8 +34,22 @@ export class UrlService {
             shortCode,
             createdBy: userId
         })
-        return url.save()
+        const savedUrl = await url.save();
+        return savedUrl.save()
     }
+
+    async getUserUrls(userId: string): Promise<Url[]> {
+    const urls = await this.urlModel
+      .find({ createdBy: userId })
+      .sort({ createdAt: -1 }) 
+      .limit(1)
+      .exec();
+    
+    if (!urls.length) {
+      throw new NotFoundException('No links found. Try shortening your first URL!');
+    }
+    return urls;
+  }
 
     async getOriginalUrl(shortCode: string): Promise<string> {
     const url = await this.urlModel.findOne({ shortCode });

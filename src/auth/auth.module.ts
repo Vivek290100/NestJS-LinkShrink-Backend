@@ -1,4 +1,3 @@
-// C:\Users\vivek_laxvnt1\Desktop\nest-js-link-shrink\src\auth\auth.module.ts
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';

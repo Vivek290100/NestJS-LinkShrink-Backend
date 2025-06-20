@@ -1,4 +1,3 @@
-// C:\Users\vivek_laxvnt1\Desktop\nest-js-link-shrink\src\url\url.controller.ts
 import { Body, Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { UrlService } from './url.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -16,11 +15,19 @@ export class UrlController {
     @Post()
     @UseGuards(AuthGuard('jwt'))
     async createShortUrl(@Body() createUrlDto: CreateUrlDto, @Req() req,): Promise<Url> {
-        console.log("pppppppp", req.user);
 
-        const userId = req.user
+        const userId = req.user._id.toString()
         return this.urlService.createShortUrl(createUrlDto, userId);
     }
+
+    @Get()
+  @UseGuards(AuthGuard('jwt'))
+  async getUserUrls(@Req() req, @Res() res: Response): Promise<void> {
+    const userId = req.user._id.toString();
+    
+    const urls = await this.urlService.getUserUrls(userId);
+    res.status(200).json(urls);
+  }
 
     @Get(':shortCode')
     async redirectToOriginal(@Param() getUrlDto: GetUrlDto, @Res() res:Response): Promise< void > {
