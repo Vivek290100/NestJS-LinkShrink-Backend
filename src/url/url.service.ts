@@ -10,7 +10,7 @@ export class UrlService {
     constructor(
         @InjectModel(Url.name)
         private urlModel: Model<Url>
-    ) { }
+    ) { } 
 
     private _generateShortCode(length = 6): string {
         return randomBytes(length)
