@@ -34,7 +34,7 @@ export class AuthService {
     const token = this.jwtService.sign({ id: user._id });
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: true,
       sameSite: 'none',
       maxAge: 3600000,
     });
@@ -56,7 +56,7 @@ export class AuthService {
     const token = this.jwtService.sign({ id: user._id });
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: true,
       sameSite: 'none',
       maxAge: 3600000,
     });
