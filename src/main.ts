@@ -5,7 +5,7 @@ import * as cookieParser from 'cookie-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication >(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.set('trust proxy', 1);
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
@@ -18,6 +18,11 @@ async function bootstrap() {
     origin: process.env.CORS_ORIGIN,
     credentials: true,
   });
-  await app.listen(process.env.PORT || 3000, '0.0.0.0');
+  const port = process.env.PORT;
+  if (!port) {
+    throw new Error('PORT environment variable is not defined');
+  }
+  await app.listen(port, '0.0.0.0');
+
 }
 bootstrap();  
