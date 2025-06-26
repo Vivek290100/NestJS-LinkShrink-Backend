@@ -9,7 +9,7 @@ import { AuthGuard } from '@nestjs/passport';
 export class AuthController {
     constructor(private authService: AuthService) { }
 
-    @Get('check')
+    @Get('health')
     @UseGuards(AuthGuard('jwt'))
     check(@Res() res: Response) {
         res.sendStatus(200);
